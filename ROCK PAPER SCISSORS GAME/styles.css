@@ -1,0 +1,394 @@
+:root {
+    --primary-color: #6c5ce7;
+    --secondary-color: #a29bfe;
+    --dark-color: #2d3436;
+    --light-color: #f5f6fa;
+    --win-color: #00b894;
+    --lose-color: #d63031;
+    --draw-color: #fdcb6e;
+    --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    flex: 1;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.score-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 1.5rem;
+}
+
+.score-box {
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    min-width: 120px;
+}
+
+.score-box span:first-child {
+    display: block;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.score-box span:last-child {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.choice {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.choice::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: var(--transition);
+    z-index: 1;
+}
+
+.choice:hover::before {
+    opacity: 0.2;
+}
+
+.choice:hover {
+    transform: translateY(-10px);
+}
+
+.choice-inner {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    z-index: 2;
+}
+
+.battle-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+.battle-choice {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.battle-choice .choice-inner {
+    width: 85%;
+    height: 85%;
+    font-size: 4rem;
+}
+
+.vs-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.result-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#result-text {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 50px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+#play-again {
+    display: none;
+}
+
+.floating-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--dark-color);
+}
+
+.modal h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.modal ul {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.modal ul li {
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1rem;
+    color: var(--dark-color);
+}
+
+footer i {
+    color: var(--lose-color);
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.winner {
+    animation: pulse 0.5s ease infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .score-container {
+        gap: 1.5rem;
+    }
+    
+    .choice {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .choice-inner {
+        font-size: 2rem;
+    }
+    
+    .battle-area {
+        gap: 1.5rem;
+    }
+    
+    .battle-choice {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .battle-choice .choice-inner {
+        font-size: 3rem;
+    }
+    
+    .vs-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 1.2rem;
+    }
+    
+    #result-text {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .choices {
+        gap: 1rem;
+    }
+    
+    .choice {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .choice-inner {
+        font-size: 1.8rem;
+    }
+    
+    .battle-area {
+        gap: 1rem;
+    }
+    
+    .battle-choice {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .battle-choice .choice-inner {
+        font-size: 2.5rem;
+    }
+    
+    .vs-circle {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+    }
+    
+    #result-text {
+        font-size: 1.2rem;
+    }
+    
+    .btn {
+        padding: 0.6rem 1.5rem;
+    }
+}

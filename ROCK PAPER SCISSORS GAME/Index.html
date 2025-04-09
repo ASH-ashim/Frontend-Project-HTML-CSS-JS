@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rock Paper Scissors</h1>
+            <div class="score-container">
+                <div class="score-box">
+                    <span>Player</span>
+                    <span id="player-score">0</span>
+                </div>
+                <div class="score-box">
+                    <span>Computer</span>
+                    <span id="computer-score">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-area">
+                <div class="choices">
+                    <div class="choice" data-choice="rock">
+                        <div class="choice-inner">
+                            <i class="fas fa-hand-rock"></i>
+                        </div>
+                    </div>
+                    <div class="choice" data-choice="paper">
+                        <div class="choice-inner">
+                            <i class="fas fa-hand-paper"></i>
+                        </div>
+                    </div>
+                    <div class="choice" data-choice="scissors">
+                        <div class="choice-inner">
+                            <i class="fas fa-hand-scissors"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="battle-area">
+                    <div class="battle-choice player-choice">
+                        <div class="choice-inner">
+                            <i class="fas fa-question"></i>
+                        </div>
+                    </div>
+                    <div class="vs-circle">
+                        <span>VS</span>
+                    </div>
+                    <div class="battle-choice computer-choice">
+                        <div class="choice-inner">
+                            <i class="fas fa-question"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-container">
+                    <p id="result-text">Choose your weapon!</p>
+                    <button id="play-again" class="btn">Play Again</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made with <i class="fas fa-heart"></i> by Ashim Bhattarai</p>
+        </footer>
+    </div>
+
+    <div class="modal" id="rules-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Game Rules</h2>
+            <ul>
+                <li>Rock crushes Scissors</li>
+                <li>Scissors cuts Paper</li>
+                <li>Paper covers Rock</li>
+            </ul>
+            <p>First to score 5 points wins the game!</p>
+        </div>
+    </div>
+
+    <button id="rules-btn" class="btn floating-btn">Rules</button>
+
+    <script src="index.js"></script>
+</body>
+</html>

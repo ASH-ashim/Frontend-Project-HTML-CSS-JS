@@ -1,0 +1,348 @@
+:root {
+    --primary: #4caf50;
+    --primary-dark: #45a049;
+    --danger: #f44336;
+    --danger-dark: #d32f2f;
+    --text: #333;
+    --text-light: #888;
+    --border: #ddd;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #33333e;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    transition: background-color 0.5s ease;
+}
+
+.container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 25px;
+    width: 100%;
+    max-width: 500px;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUpFadeIn 0.6s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes slideUpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    text-align: center;
+    color: var(--text);
+    margin-bottom: 25px;
+    font-size: 28px;
+    position: relative;
+    animation: textReveal 0.8s 0.3s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes textReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    margin: 15px auto 0;
+    border-radius: 4px;
+    transform: scaleX(0);
+    transform-origin: center;
+    animation: scaleIn 0.6s 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.input-container {
+    display: flex;
+    margin-bottom: 25px;
+    gap: 12px;
+    flex-direction: column;
+    opacity: 0;
+    animation: fadeIn 0.5s 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#task-input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: var(--transition);
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba(150, 155, 215, 0.3);
+}
+
+#task-input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+    transform: translateY(-1px);
+}
+
+#add-btn {
+    padding: 14px 20px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: var(--transition);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+#add-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+#add-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-dark);
+    z-index: 1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+#add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+#add-btn:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+#add-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+}
+
+.add-icon {
+    width: 20px;
+    height: 20px;
+    fill: white;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+#add-btn:hover .add-icon {
+    transform: rotate(90deg);
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+    max-height: 50vh;
+    overflow-y: auto;
+    margin: 0;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transform: translateX(-20px);
+    opacity: 0;
+    animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transition: var(--transition);
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.task-item:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.task-checkbox {
+    margin-right: 14px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    transition: var(--transition);
+}
+
+.task-checkbox:hover {
+    transform: scale(1.1);
+}
+
+.task-text {
+    flex: 1;
+    font-size: 16px;
+    transition: var(--transition);
+    word-break: break-word;
+    padding-right: 10px;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: var(--text-light);
+    opacity: 0.8;
+}
+
+.delete-btn {
+    background-color: var(--danger);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.delete-btn:hover {
+    background-color: var(--danger-dark);
+    transform: scale(1.05);
+}
+
+.delete-btn:active {
+    transform: scale(0.98);
+}
+
+.task-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    color: var(--text-light);
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeIn 0.5s 1s ease-out forwards;
+}
+
+@media (min-width: 600px) {
+    .container {
+        padding: 30px;
+        margin: 40px 0;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .input-container {
+        flex-direction: row;
+    }
+
+    #add-btn {
+        width: auto;
+        min-width: 120px;
+    }
+
+    #task-list {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .task-item {
+        padding: 12px;
+    }
+
+    .delete-btn {
+        padding: 5px 8px;
+        font-size: 13px;
+    }
+}
+
+#task-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#task-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#task-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+#task-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

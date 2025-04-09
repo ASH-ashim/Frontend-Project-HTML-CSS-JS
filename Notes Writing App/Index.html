@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes writing app</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1><i class="fas fa-rocket"></i> ASH'S Notes</h1>
+                <button id="new-note-btn" class="btn-primary">
+                    <i class="fas fa-plus"></i> New Note
+                </button>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" id="search-notes" placeholder="Search notes...">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <div class="notes-list" id="notes-list">
+                <!-- Notes will be dynamically inserted here -->
+            </div>
+            
+            <div class="sidebar-footer">
+                <button id="theme-toggle" class="btn-icon">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="clear-all-btn" class="btn-icon">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </aside>
+        
+        <main class="note-editor">
+            <div class="note-editor-header">
+                <input type="text" id="note-title" placeholder="Note Title">
+                <div class="toolbar">
+                    <button class="tool-btn" data-command="bold"><i class="fas fa-bold"></i></button>
+                    <button class="tool-btn" data-command="italic"><i class="fas fa-italic"></i></button>
+                    <button class="tool-btn" data-command="underline"><i class="fas fa-underline"></i></button>
+                    <button class="tool-btn" data-command="insertUnorderedList"><i class="fas fa-list-ul"></i></button>
+                    <button class="tool-btn" data-command="insertOrderedList"><i class="fas fa-list-ol"></i></button>
+                    <button class="tool-btn" data-command="createLink"><i class="fas fa-link"></i></button>
+                    <button class="tool-btn" data-command="undo"><i class="fas fa-undo"></i></button>
+                    <button class="tool-btn" data-command="redo"><i class="fas fa-redo"></i></button>
+                </div>
+            </div>
+            
+            <div id="note-content" contenteditable="true" class="note-content"></div>
+            
+            <div class="note-editor-footer">
+                <span id="last-saved">Not saved yet</span>
+                <button id="delete-note-btn" class="btn-danger">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+                <button id="save-note-btn" class="btn-primary">
+                    <i class="fas fa-save"></i> Save
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <div class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

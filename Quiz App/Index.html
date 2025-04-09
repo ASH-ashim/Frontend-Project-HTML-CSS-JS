@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <header>
+            <h1>ASH'S Quiz Contest</h1>
+            <div class="score-time-container">
+                <div class="score">Score: <span id="score">0</span></div>
+                <div class="time">Time: <span id="time">30</span>s</div>
+            </div>
+        </header>
+
+        <main>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress"></div>
+                <div class="progress-text" id="progress-text">Question 1/10</div>
+            </div>
+
+            <div class="question-container">
+                <div class="question" id="question">Loading question...</div>
+                <div class="options" id="options">
+      
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="next-btn" class="btn next-btn">Next Question <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+    <div class="result-modal" id="result-modal">
+        <div class="modal-content">
+            <h2>Quiz Completed!</h2>
+            <div class="final-score">Your Score: <span id="final-score">0</span>/10</div>
+            <div class="performance-message" id="performance-message"></div>
+            <button id="restart-btn" class="btn restart-btn">Play Again <i class="fas fa-redo"></i></button>
+        </div>
+    </div>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
